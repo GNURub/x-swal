@@ -1,0 +1,77 @@
+<link rel="import" href="../polymer/polymer.html">
+<script src="../sweetalert/lib/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="../sweetalert/lib/sweet-alert.css">
+
+<polymer-element name="x-swal" attributes="type">
+  <template>
+    <style>
+      :host{
+        display: none;
+      }
+    </style>
+
+    <content id="title" select="title, text, confirm, cancel, img"></content>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        publish:{
+          closeOnConfirm: {
+            value: false
+          },
+          allowOutsideClick: {
+            value: false
+          },
+          closeOnCancel: {
+            value: true
+          },
+          showCancelButton: {
+            value: false
+          }
+        },
+        attached: function(){
+          this.elements = Array.prototype.slice.call(
+            this.$.title.getDistributedNodes()
+          );
+          for(var a = 0, m; m = this.elements[a]; ++a){
+            var src = m.getAttribute('src'),
+                tagName = m.localName,
+                textContent = m.innerHTML;
+            if(tagName === 'img' && src){
+              textContent = src;
+
+            }else if(tagName === 'confirm'){
+              var color = m.getAttribute('color');
+              if(color){
+                this.confirmButtonColor = color;
+              }
+            }
+            this[tagName] = textContent;
+          }
+        },
+        active: function() {
+          swal({
+        		title: this.title || '',
+        		text: this.text || '',
+        		type: this.type || '',
+        		showCancelButton: this.showCancelButton,
+        		confirmButtonColor: this.confirmButtonColor || '#AEDEF4',
+        		confirmButtonText: this.confirm || 'Ok',
+        		cancelButtonText: this.cancel || 'Cancel',
+        		closeOnConfirm: this.closeOnConfirm,
+        		closeOnCancel: this.closeOnCancel,
+            imageUrl: this.img || ''
+        	}, function(isConfirm){
+              console.log(isConfirm);
+              setTimeout(function(){
+                this.fire('confirmation', isConfirm);
+              }.bind(this), 500);
+          }.bind(this));
+        }
+      });
+
+    })();
+  </script>
+</polymer-element>
