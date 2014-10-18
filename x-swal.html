@@ -2,6 +2,24 @@
 <script src="../sweetalert/lib/sweet-alert.min.js"></script>
 <link rel="stylesheet" href="../sweetalert/lib/sweet-alert.css">
 
+<!--
+The `open-map` element renders a Open Map Street thanks to
+ [Mapbox](http://mapbox.com/).
+
+##### Example: Sweet Alert
+        <x-swal id="7" type="success" >
+          <title>Something went wrong!</title>
+          <text>Oops...</text>
+          <img src="images/thumbs-up.jpg">
+        </x-swal>
+
+@element x-swal
+@blurb Element for rendering a Open Street Map with MapBox.
+@status alpha
+@homepage https://ruben96.github.io/x-swal/components/x-swal/
+-->
+
+
 <polymer-element name="x-swal" attributes="type">
   <template>
     <style>
@@ -18,15 +36,43 @@
 
       Polymer({
         publish:{
+          /**
+          * A Mapbox map object
+          *
+          * @property map
+          * @type L.mapbox.map
+          * @default null
+          */
           closeOnConfirm: {
             value: false
           },
+          /**
+          * A Mapbox map object
+          *
+          * @property map
+          * @type L.mapbox.map
+          * @default null
+          */
           allowOutsideClick: {
             value: false
           },
+          /**
+          * A Mapbox map object
+          *
+          * @property map
+          * @type L.mapbox.map
+          * @default null
+          */
           closeOnCancel: {
             value: true
           },
+          /**
+          * A Mapbox map object
+          *
+          * @property map
+          * @type L.mapbox.map
+          * @default null
+          */
           showCancelButton: {
             value: false
           }
@@ -51,19 +97,24 @@
             this[tagName] = textContent;
           }
         },
+        /**
+        * Active the alert.
+        *
+        * @method active
+        */
         active: function() {
           swal({
-        		title: this.title || '',
-        		text: this.text || '',
-        		type: this.type || '',
-        		showCancelButton: this.showCancelButton,
-        		confirmButtonColor: this.confirmButtonColor || '#AEDEF4',
-        		confirmButtonText: this.confirm || 'Ok',
-        		cancelButtonText: this.cancel || 'Cancel',
-        		closeOnConfirm: this.closeOnConfirm,
-        		closeOnCancel: this.closeOnCancel,
+            title: this.title || '',
+            text: this.text || '',
+            type: this.type || '',
+            showCancelButton: this.showCancelButton,
+            confirmButtonColor: this.confirmButtonColor || '#AEDEF4',
+            confirmButtonText: this.confirm || 'Ok',
+            cancelButtonText: this.cancel || 'Cancel',
+            closeOnConfirm: this.closeOnConfirm,
+            closeOnCancel: this.closeOnCancel,
             imageUrl: this.img || ''
-        	}, function(isConfirm){
+          }, function(isConfirm){
               console.log(isConfirm);
               setTimeout(function(){
                 this.fire('confirmation', isConfirm);

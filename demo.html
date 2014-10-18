@@ -14,6 +14,9 @@
     table th{
       width: 90px;
     }
+    .obj{
+      color: #1BA7EE;
+    }
   </style>
 </head>
 
@@ -155,16 +158,16 @@
     &lt;/<span class="tag">x-swal</span>&gt;
 
     &lt;<span class="tag">script</span>&gt;
-      &nbsp;&nbsp;var alert = document.querySelector('x-swal');
-      &nbsp;&nbsp;alert.addEventListener('confirmation',     &nbsp;&nbsp;&nbsp;&nbsp;function (isConfirm) {
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isConfirm){
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.title = "Deleted!";
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.text = "Your imaginary file has been deleted.";
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.type = "success";
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.title = "Cancelled!";
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.text = "Your imaginary file is safe :)";
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.type = "error";
+      &nbsp;&nbsp;<span class="func">var</span> <span class="var">alert</span> = <span class="obj">document</span>.querySelector(<span class="str">'x-swal'</span>);
+      &nbsp;&nbsp;alert.addEventListener(<span class="str">'confirmation'</span>,     &nbsp;&nbsp;&nbsp;&nbsp;<span class="func">function</span> (isConfirm) {
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span>(isConfirm){
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.title = <span class="str">"Deleted!"</span>;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.text = <span class="str">"Your imaginary file has been deleted."</span>;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.type = <span class="str">"success"</span>;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="tag">else</span>{
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.title = <span class="str">"Cancelled!"</span>;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.text = <span class="str">"Your imaginary file is safe :)"</span>;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert.type = <span class="str">"error"</span>;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
       &nbsp;&nbsp;&nbsp;&nbsp;alert.active();
       &nbsp;&nbsp;});
@@ -205,7 +208,7 @@
 
 <p class="center"><b>Method 2:</b> Download the x-swal<strong>CSS</strong> and <strong>JavaScript</strong> files.</p>
 
-<a class="button" href="https://github.com/t4t5/sweetalert/archive/master.zip" download>Download files</a>
+<a class="button" href="https://github.com/ruben96/x-swal/archive/master.zip" download>Download files</a>
 
 <ol>
 	<li>
