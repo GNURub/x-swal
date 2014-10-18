@@ -102,7 +102,7 @@ The `open-map` element renders a Open Map Street thanks to
         *
         * @method active
         */
-        active: function() {
+        active: function(cb) {
           swal({
             title: this.title || '',
             text: this.text || '',
@@ -115,10 +115,15 @@ The `open-map` element renders a Open Map Street thanks to
             closeOnCancel: this.closeOnCancel,
             imageUrl: this.img || ''
           }, function(isConfirm){
-              console.log(isConfirm);
-              setTimeout(function(){
-                this.fire('confirmation', isConfirm);
-              }.bind(this), 500);
+              this.fire('confirmation', isConfirm);
+              if(cb && typeof cb === "function"){
+                return cb(isConfirm);
+              }
+              return;
+              // console.log(isConfirm);
+              // setTimeout(function(){
+              //   this.fire('confirmation', isConfirm);
+              // }.bind(this), 500);
           }.bind(this));
         }
       });

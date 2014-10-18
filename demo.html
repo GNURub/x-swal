@@ -140,7 +140,7 @@
 		<div class="ui">
 			<p>... and by passing a parameter, you can execute something else for "Cancel".</p>
 			<button>Try me!</button>
-      <x-swal id="6" type="warning" showCancelButton="true" closeOnConfirm="false" closeOnCancel="false" >
+      <x-swal id="6" type="warning"  showCancelButton="true" closeOnConfirm="false" closeOnCancel="false" >
         <title>Are you sure?</title>
         <text>Your will not be able to recover this imaginary file!</text>
         <confirm>Yes, delete it!</confirm>
@@ -400,32 +400,21 @@ document.querySelector('ul.examples li.success button').onclick = function(){
 
 document.querySelector('ul.examples li.warning.confirm button').onclick = function(){
   var alert = document.querySelector('ul.examples li.warning.confirm x-swal');
-  alert.active();
-  alert.addEventListener('confirmation', function(){
-    alert.title = "Deleted!";
-    alert.text = "Your imaginary file has been deleted!";
-    alert.type = "success";
-    alert.active();
-  }, false);
+  alert.active(function(){
+
+  });
 };
 
 document.querySelector('ul.examples li.warning.cancel button').onclick = function(){
 
   var alert = document.querySelector('ul.examples li.warning.cancel x-swal');
-  alert.active();
-  alert.addEventListener('confirmation', function(isConfirm){
-    console.log(isConfirm);
-    if (isConfirm){
-      alert.title = "Deleted!";
-      alert.text = "Your imaginary file has been deleted!";
-      alert.type = "success";
+  alert.active(function(status){
+    if (status) {
+
     }else{
-      alert.title = "Cancelled";
-      alert.text = "Your imaginary file is safe :)";
-      alert.type = "error";
+      
     }
-    alert.active();
-  }, false);
+  });
 };
 
 document.querySelector('ul.examples li.custom-icon button').onclick = function(){
