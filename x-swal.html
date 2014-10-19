@@ -1,10 +1,9 @@
 <link rel="import" href="../polymer/polymer.html">
-<script src="../sweetalert/lib/sweet-alert.min.js"></script>
+<script src="../sweetalert/lib/sweet-alert.js"></script>
 <link rel="stylesheet" href="../sweetalert/lib/sweet-alert.css">
 
 <!--
-The `open-map` element renders a Open Map Street thanks to
- [Mapbox](http://mapbox.com/).
+The `x-swal` element that display an alternative for alert() javascript-function.
 
 ##### Example: Sweet Alert
         <x-swal id="7" type="success" >
@@ -12,9 +11,12 @@ The `open-map` element renders a Open Map Street thanks to
           <text>Oops...</text>
           <img src="images/thumbs-up.jpg">
         </x-swal>
+        <script>
+          document.querySelector('x-swal').active();
+        </script>
 
 @element x-swal
-@blurb Element for rendering a Open Street Map with MapBox.
+@blurb Element that display an alternative for alert() javascript-function.
 @status alpha
 @homepage https://ruben96.github.io/x-swal/components/x-swal/
 -->
@@ -27,7 +29,6 @@ The `open-map` element renders a Open Map Street thanks to
         display: none;
       }
     </style>
-
     <content id="title" select="title, text, confirm, cancel, img"></content>
   </template>
   <script>
@@ -36,48 +37,58 @@ The `open-map` element renders a Open Map Street thanks to
 
       Polymer({
         publish:{
+          // auto: false,
           /**
-          * A Mapbox map object
+          * Set to <i>false</i> if you want the modal to stay open even if the
+          * user presses the "Confirm"-button. This is especially useful if the
+          * function attached to the "Confirm"-button is another x-swal.
           *
-          * @property map
-          * @type L.mapbox.map
-          * @default null
+          * @property closeOnConfirm
+          * @type boolean
+          * @default false
           */
           closeOnConfirm: {
             value: false
           },
+
           /**
-          * A Mapbox map object
+          * If set to <strong>true</strong>, the user can dismiss the modal by
+          * clicking outside it.
           *
-          * @property map
-          * @type L.mapbox.map
-          * @default null
+          * @property allowOutsideClick
+          * @type boolean
+          * @default false
           */
           allowOutsideClick: {
             value: false
           },
+
           /**
-          * A Mapbox map object
+          * Set to <i>false</i> if you want the modal to stay open even if the
+          * user presses the "Cancel"-button. This is especially useful if the
+          * function attached to the "Cancel"-button is another SweetAlert.
           *
-          * @property map
-          * @type L.mapbox.map
-          * @default null
+          * @property closeOnCancel
+          * @type boolean
+          * @default true
           */
           closeOnCancel: {
             value: true
           },
+
           /**
-          * A Mapbox map object
+          * If set to <strong>true</strong>, a "Cancel"-button will be shown,
+          * which the user can click on to dismiss the modal.
           *
-          * @property map
-          * @type L.mapbox.map
-          * @default null
+          * @property showCancelButton
+          * @type boolean
+          * @default false
           */
           showCancelButton: {
             value: false
           }
         },
-        attached: function(){
+        attached: function(document){
           this.elements = Array.prototype.slice.call(
             this.$.title.getDistributedNodes()
           );
@@ -97,6 +108,12 @@ The `open-map` element renders a Open Map Street thanks to
             this[tagName] = textContent;
           }
         },
+        autoChanged: function(oldVal, newVal){
+          if(newVal){
+            this.active();
+          }
+        },
+
         /**
         * Active the alert.
         *
@@ -120,14 +137,9 @@ The `open-map` element renders a Open Map Street thanks to
                 return cb(isConfirm);
               }
               return;
-              // console.log(isConfirm);
-              // setTimeout(function(){
-              //   this.fire('confirmation', isConfirm);
-              // }.bind(this), 500);
           }.bind(this));
         }
       });
-
-    })();
+    })(document);
   </script>
 </polymer-element>
