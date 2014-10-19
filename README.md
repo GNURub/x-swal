@@ -19,5 +19,6 @@ Download the package and reference the Component file:
 ```html
 <!-- Optional polyfill-->
 <script src="../platform/platform.js" />
+<!--Element-->
 <link rel="import" href="../x-swal/x-swal.html">
 ```
