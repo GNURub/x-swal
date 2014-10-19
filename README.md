@@ -2,7 +2,7 @@
 
 An awesome replacement for JavaScript's alert.
 
-[See it in action!](http://tristanedwards.me/sweetalert)
+[See it in action!](https://ruben96.github.io/x-swal)
 
 ![A success modal](https://raw.github.com/t4t5/sweetalert/master/sweetalert.gif)
 
