@@ -1,0 +1,7 @@
+{
+  "name": "x-swal#gh-pages",
+  "private": true,
+  "dependencies": {
+    "x-swal": "ruben96/x-swal#master"
+  }
+}

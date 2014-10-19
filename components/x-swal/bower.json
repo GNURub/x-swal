@@ -1,0 +1,34 @@
+{
+  "name": "x-swal",
+  "version": "0.0.1",
+  "private": false,
+  "main": "x-swal.html",
+  "description": "Implementation of the sweetAlert in webcomponent",
+  "authors": [
+    "Rubén Cid <rubencidlara@gmail.com>"
+  ],
+  "keywords": [
+    "polymer",
+    "web-component",
+    "web-components",
+    "swal",
+    "sweet",
+    "sweetAlert",
+    "alert"
+  ],
+  "license": "MIT",
+  "homepage": "https://ruben96.github.io/x-swal/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "*.*~",
+    "src",
+    "../",
+    "gulpfile.js"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#>=0.3.3",
+    "sweetalert": "~0.2.0"
+  }
+}
