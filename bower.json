@@ -29,6 +29,6 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#>=0.3.3",
-    "sweetalert": "~0.2.0"
+    "sweetalert2": "~0.2.2"
   }
 }
