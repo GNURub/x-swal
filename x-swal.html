@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
-<script src="../sweetalert/lib/sweet-alert.js"></script>
-<link rel="stylesheet" href="../sweetalert/lib/sweet-alert.css">
+<script src="../sweetalert2/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="../sweetalert2/dist/sweetalert2.css">
 
 <!--
 The `x-swal` element that display an alternative for alert() javascript-function.
@@ -25,7 +25,7 @@ The `x-swal` element that display an alternative for alert() javascript-function
 <polymer-element name="x-swal" attributes="type">
   <template>
     <style>
-      :host{
+      :host {
         display: none;
       }
     </style>
@@ -36,107 +36,114 @@ The `x-swal` element that display an alternative for alert() javascript-function
       'use strict';
 
       Polymer({
-        publish:{
+        publish: {
           // auto: false,
           /**
-          * Set to <i>false</i> if you want the modal to stay open even if the
-          * user presses the "Confirm"-button. This is especially useful if the
-          * function attached to the "Confirm"-button is another x-swal.
-          *
-          * @property closeOnConfirm
-          * @type boolean
-          * @default false
-          */
+           * Set to <i>false</i> if you want the modal to stay open even if the
+           * user presses the "Confirm"-button. This is especially useful if the
+           * function attached to the "Confirm"-button is another x-swal.
+           *
+           * @property closeOnConfirm
+           * @type boolean
+           * @default false
+           */
           closeOnConfirm: {
             value: false
           },
 
           /**
-          * If set to <strong>true</strong>, the user can dismiss the modal by
-          * clicking outside it.
-          *
-          * @property allowOutsideClick
-          * @type boolean
-          * @default false
-          */
+           * If set to <strong>true</strong>, the user can dismiss the modal by
+           * clicking outside it.
+           *
+           * @property allowOutsideClick
+           * @type boolean
+           * @default false
+           */
           allowOutsideClick: {
             value: false
           },
 
           /**
-          * Set to <i>false</i> if you want the modal to stay open even if the
-          * user presses the "Cancel"-button. This is especially useful if the
-          * function attached to the "Cancel"-button is another SweetAlert.
-          *
-          * @property closeOnCancel
-          * @type boolean
-          * @default true
-          */
+           * Set to <i>false</i> if you want the modal to stay open even if the
+           * user presses the "Cancel"-button. This is especially useful if the
+           * function attached to the "Cancel"-button is another SweetAlert.
+           *
+           * @property closeOnCancel
+           * @type boolean
+           * @default true
+           */
           closeOnCancel: {
             value: true
           },
 
           /**
-          * If set to <strong>true</strong>, a "Cancel"-button will be shown,
-          * which the user can click on to dismiss the modal.
-          *
-          * @property showCancelButton
-          * @type boolean
-          * @default false
-          */
+           * If set to <strong>true</strong>, a "Cancel"-button will be shown,
+           * which the user can click on to dismiss the modal.
+           *
+           * @property showCancelButton
+           * @type boolean
+           * @default false
+           */
           showCancelButton: {
             value: false
           }
         },
-        attached: function(document){
+        attached: function (document) {
           this.elements = Array.prototype.slice.call(
-            this.$.title.getDistributedNodes()
+              this.$.title.getDistributedNodes()
           );
-          for(var a = 0, m; m = this.elements[a]; ++a){
+          for (var a = 0, m; m = this.elements[a]; ++a) {
             var src = m.getAttribute('src'),
                 tagName = m.localName,
                 textContent = m.innerHTML;
-            if(tagName === 'img' && src){
+            if (tagName === 'img' && src) {
               textContent = src;
 
-            }else if(tagName === 'confirm'){
+            } else if (tagName === 'confirm') {
               var color = m.getAttribute('color');
-              if(color){
+              if (color) {
                 this.confirmButtonColor = color;
+              }
+            }
+            else if (tagName === 'cancel') {
+              var color = m.getAttribute('color');
+              if (color) {
+                this.cancelButtonColor = color;
               }
             }
             this[tagName] = textContent;
           }
         },
-        autoChanged: function(oldVal, newVal){
-          if(newVal){
+        autoChanged: function (oldVal, newVal) {
+          if (newVal) {
             this.active();
           }
         },
 
         /**
-        * Active the alert.
-        *
-        * @method active
-        */
-        active: function(cb) {
+         * Active the alert.
+         *
+         * @method active
+         */
+        active: function (cb) {
           swal({
-            title: this.title || '',
-            text: this.text || '',
-            type: this.type || '',
+            title: this.title,
+            text: this.text,
+            type: this.type,
             showCancelButton: this.showCancelButton,
-            confirmButtonColor: this.confirmButtonColor || '#AEDEF4',
-            confirmButtonText: this.confirm || 'Ok',
-            cancelButtonText: this.cancel || 'Cancel',
+            confirmButtonColor: this.confirmButtonColor,
+            cancelButtonColor: this.cancelButtonColor,
+            confirmButtonText: this.confirm,
+            cancelButtonText: this.cancel,
             closeOnConfirm: this.closeOnConfirm,
             closeOnCancel: this.closeOnCancel,
-            imageUrl: this.img || ''
-          }, function(isConfirm){
-              this.fire('confirmation', isConfirm);
-              if(cb && typeof cb === "function"){
-                return cb(isConfirm);
-              }
-              return;
+            imageUrl: this.img
+          }, function (isConfirm) {
+            this.fire('confirmation', isConfirm);
+            if (cb && typeof cb === "function") {
+              return cb(isConfirm);
+            }
+            return;
           }.bind(this));
         }
       });
