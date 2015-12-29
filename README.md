@@ -2,7 +2,7 @@
 
 An awesome replacement for JavaScript's alert.
 
-[See it in action!](https://ruben96.github.io/x-swal)
+[See it in action!](http://gnurub.github.io/x-swal/components/x-swal/)
 
 ![A success modal](https://raw.github.com/t4t5/sweetalert/master/sweetalert.gif)
 
@@ -18,7 +18,7 @@ Download the package and reference the Component file:
 
 ```html
 <!-- Optional polyfill-->
-<script src="../platform/platform.js" />
+<script src="../webcomponentsjs/webcomponents-lite.min.js" />
 <!--Element-->
 <link rel="import" href="../x-swal/x-swal.html">
 ```
